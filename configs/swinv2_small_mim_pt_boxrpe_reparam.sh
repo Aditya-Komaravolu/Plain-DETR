@@ -3,10 +3,11 @@
 set -x
 
 FILE_NAME=$(basename $0)
-EXP_DIR=./exps/${FILE_NAME%.*}
+EXP_DIR="/home/aditya/snaglist_training_plain_detr"
 PY_ARGS=${@:1}
 
 python -u main.py \
+    --coco_path /home/aditya/snaglist_dataset_apr9 \
     --output_dir ${EXP_DIR} \
     --with_box_refine \
     --two_stage \
@@ -16,7 +17,7 @@ python -u main.py \
     --num_queries_one2many 1500 \
     --k_one2many 6 \
     --lambda_one2many 1.0 \
-    --dropout 0.0 \
+    --dropout 0.3 \
     --norm_type pre_norm \
     --backbone swin_v2_small_window12to16_2global \
     --drop_path_rate 0.1 \
@@ -27,7 +28,7 @@ python -u main.py \
     --decoder_rpe_type linear \
     --proposal_feature_levels 4 \
     --proposal_in_stride 16 \
-    --pretrained_backbone_path ./pt_models/swinv2_small_1k_500k_mim_pt.pth \
+    --pretrained_backbone_path /home/aditya/Plain-DETR/map50_plain_detr.pth \
     --epochs 12 \
     --lr_drop 11 \
     --warmup 1000 \
@@ -40,4 +41,5 @@ python -u main.py \
     --set_cost_bbox 1.0 \
     --bbox_loss_coef 1.0 \
     --position_embedding sine_unnorm \
+    --batch_size 1 \
     ${PY_ARGS}

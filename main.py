@@ -274,7 +274,7 @@ def get_args_parser():
     parser.add_argument("--use_checkpoint", default=False, action="store_true")
 
     # * logging technologies
-    parser.add_argument("--use_wandb", action="store_true", default=False)
+    parser.add_argument("--use_wandb", action="store_true", default=True)
     parser.add_argument("--wandb_entity", type=str)
     parser.add_argument("--wandb_name", type=str)
     return parser
